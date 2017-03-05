@@ -13,6 +13,7 @@
 
 -(void)insertEntity:(EMEmployee *)employee;
 -(void)updateEntity:(EMEmployee *)employee;
--(NSMutableArray *)fetchAllEntity;
+-(void)deleteEntity:(NSString *)empId;
+-(void)fetchAllEntityWithCompletion:(void(^)(NSMutableArray * array))completion;
 
 @end

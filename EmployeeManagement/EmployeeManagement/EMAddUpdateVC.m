@@ -7,8 +7,12 @@
 //
 
 #import "EMAddUpdateVC.h"
+#import "EMDataBaseManager.h"
 
 @interface EMAddUpdateVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
+@property (strong, nonatomic) UIBarButtonItem * submitButton;
+@property (strong, nonatomic) EMDataBaseManager * dbManager;
 
 @end
 
@@ -23,6 +27,56 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    self.submitButton = [[UIBarButtonItem alloc] initWithTitle:@"Submit"
+                                                         style:UIBarButtonItemStylePlain
+                                                        target:self
+                                                        action:@selector(submitAction)];
+    
+    [self.navigationItem setRightBarButtonItem:self.submitButton];
+    self.dbManager = [[EMDataBaseManager alloc] init];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+
+    [super viewWillAppear:animated];
+    
+    if ([self.launchType isEqualToNumber:[NSNumber numberWithInt:UPDATE]]) {
+        
+        self.name.text = self.employee.name;
+        self.gender.text = self.employee.gender;
+        self.dob.text = [self.employee.dob stringValue];
+        self.hobbies.text = self.employee.hobbies;
+        self.designation.text = self.employee.designation;
+    //        self.empImage.image =  NEED TO CHECK //self.employee.imageLink;
+    }
+}
+
+-(void)submitAction {
+    
+    if ([self.launchType isEqualToNumber:[NSNumber numberWithInt:ADD]]) {
+    
+        self.employee = [[EMEmployee alloc] init];
+        self.employee.name = self.name.text;
+        self.employee.gender = self.gender.text;
+        self.employee.dob = [NSNumber numberWithInt:[self.dob.text intValue]];
+        self.employee.hobbies = self.hobbies.text;
+        self.employee.designation = self.designation.text;
+//        self.employee.imageLink = @""                         // NEED TO CHECK
+        self.employee.empId = [NSString stringWithFormat:@"EMP_%@", [EMUtility getCurrentTime]];
+
+        [self.dbManager insertEntity:self.employee];
+    }
+    else {
+        
+        self.employee.name = self.name.text;
+        self.employee.gender = self.gender.text;
+        self.employee.dob = [NSNumber numberWithInt:[self.dob.text intValue]];
+        self.employee.hobbies = self.hobbies.text;
+        self.employee.designation = self.designation.text;
+        //        self.employee.imageLink = @""                 // NEED TO CHECK
+        [self.dbManager updateEntity:self.employee];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,7 +95,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 //#warning Incomplete implementation, return the number of rows
-    return 10;
+    return 0;
 }
  
 */ 

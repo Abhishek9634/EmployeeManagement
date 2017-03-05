@@ -537,10 +537,19 @@
                             <outlet property="delegate" destination="ejt-UH-pjK" id="LeU-D8-imd"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="address" destination="tgN-Mu-4Mr" id="7Kc-A3-5aS"/>
+                        <outlet property="designation" destination="jem-dn-rn2" id="aNh-YP-i6w"/>
+                        <outlet property="dob" destination="9g1-p3-kz9" id="T6d-hh-p48"/>
+                        <outlet property="empImage" destination="X2T-Cf-rkd" id="nK6-lu-zy0"/>
+                        <outlet property="gender" destination="Pv9-6y-Wu8" id="eUR-lJ-gC1"/>
+                        <outlet property="hobbies" destination="xL6-3T-LcN" id="EUd-kS-rpG"/>
+                        <outlet property="name" destination="neP-Xg-YGI" id="Jpc-zx-aFQ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KeZ-gD-Thd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2496.8000000000002" y="138.98050974512745"/>
+            <point key="canvasLocation" x="2497" y="139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="E2Q-70-dmh">

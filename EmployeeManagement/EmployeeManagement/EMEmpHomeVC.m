@@ -12,8 +12,11 @@
 #import "EMAddUpdateVC.h"
 #import "EMDetailsVC.h"
 #import "EMDataBaseManager.h"
+#import "EMUtility.h"
 
 @interface EMEmpHomeVC () <UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) EMDataBaseManager * dbManager;
 
 @end
 
@@ -31,11 +34,25 @@
     self.empTableView.delegate = self;
     self.empTableView.dataSource = self;
     self.empList = [[NSMutableArray alloc] init];
+    self.dbManager = [[EMDataBaseManager alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if (self.empList.count) {
+        [self.empList removeAllObjects];
+    }
+    
+    [self.dbManager fetchAllEntityWithCompletion:^(NSMutableArray *array) {
+        self.empList = array;
+        [self.empTableView reloadData];
+    }];
 }
 
 //============================================================================================================================================
@@ -44,26 +61,14 @@
 
 - (IBAction)addEmployee:(id)sender {
     
-    NSLog(@"ADDING EMPLOYEE TO LIST");
-    
-    EMEmployee *employee = [[EMEmployee alloc] init];
-    employee.name = @"Abhishek";
-    employee.gender = @"Male";
-    [self.empList addObject:employee];
-    [self.empTableView reloadData];
-    
-    EMDataBaseManager * dbManager = [[EMDataBaseManager alloc] init];
-    [dbManager insertEntity:employee];
-    
-//    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    EMAddUpdateVC * empAddUpdateVC = (EMAddUpdateVC *)[storyBoard instantiateViewControllerWithIdentifier:@"EMAddUpdateVC"];
-//    [self.navigationController pushViewController:empAddUpdateVC animated:YES];
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    EMAddUpdateVC * empAddUpdateVC = (EMAddUpdateVC *)[storyBoard instantiateViewControllerWithIdentifier:@"EMAddUpdateVC"];
+    empAddUpdateVC.launchType = [NSNumber numberWithInt:ADD];
+    [self.navigationController pushViewController:empAddUpdateVC animated:YES];
 }
 
 - (IBAction)backAction:(id)sender {
-    
-    EMDataBaseManager * dbManager = [[EMDataBaseManager alloc] init];
-    [dbManager fetchAllEntity];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 //============================================================================================================================================
@@ -96,6 +101,7 @@
 
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     EMDetailsVC * empDetailsVC = (EMDetailsVC *)[storyBoard instantiateViewControllerWithIdentifier:@"EMDetailsVC"];
+    empDetailsVC.employee = [self.empList objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:empDetailsVC animated:YES];
 }
 

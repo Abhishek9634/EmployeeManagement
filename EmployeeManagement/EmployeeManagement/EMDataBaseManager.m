@@ -68,11 +68,37 @@
         NSLog(@"UDATING ENTITY ERROR(IF_ANY) : %@", error.description);
     }
     else {
-        NSLog(@"NO_DATA_FOUND");
+        NSLog(@"NO_DATA_FOUND FOR UPDATING");
     }
 }
 
--(NSMutableArray *)fetchAllEntity {
+-(void)deleteEntity:(NSString *)empId {
+    
+    EMDBHandler * dbHandler = [EMDBHandler sharedManager];
+    
+    NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:@"Employee"];
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"empId == %@", empId];
+    [request setPredicate:predicate];
+    
+    NSError *fetchError = nil;
+    NSArray *results = [dbHandler.persistentContainer.viewContext executeFetchRequest:request error:&fetchError];
+    NSLog(@"FETCHING FOR DELETE ENTITY ERROR(IF_ANY) : %@ && COUNT : %lu", fetchError.description, results.count);
+    
+    if (results.count) {
+        
+        Employee *dbEmployee = [results objectAtIndex:0];
+        [dbHandler.persistentContainer.viewContext deleteObject:dbEmployee];
+        
+        NSError *error = nil;
+        [dbHandler.persistentContainer.viewContext save:&error];
+        NSLog(@"DELETING ENTITY ERROR(IF_ANY) : %@", error.description);
+    }
+    else {
+        NSLog(@"NO_DATA_FOUND FOR DELETING");
+    }
+}
+
+-(void)fetchAllEntityWithCompletion:(void(^)(NSMutableArray * array))completion {
     
     NSMutableArray * employeeList = [[NSMutableArray alloc] init];
     EMDBHandler * dbHandler = [EMDBHandler sharedManager];
@@ -102,7 +128,7 @@
         [employeeList addObject:employee];
     }
 
-    return employeeList;
+    completion (employeeList);
 }
 
 @end
