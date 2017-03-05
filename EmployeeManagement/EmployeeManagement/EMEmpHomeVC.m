@@ -9,6 +9,7 @@
 #import "EMEmpHomeVC.h"
 #import "EMEmployeeCell.h"
 #import "EMEmployee.h"
+#import "EMAddUpdateVC.h"
 
 @interface EMEmpHomeVC () <UITableViewDelegate, UITableViewDataSource>
 
@@ -43,15 +44,15 @@
     
     NSLog(@"ADDING EMPLOYEE TO LIST");
     
-    EMEmployee *employee = [[EMEmployee alloc] init];
-    employee.name = @"Abhishek";
-    employee.gender = @"Male";
-    [self.empList addObject:employee];
-    [self.empTableView reloadData];
+//    EMEmployee *employee = [[EMEmployee alloc] init];
+//    employee.name = @"Abhishek";
+//    employee.gender = @"Male";
+//    [self.empList addObject:employee];
+//    [self.empTableView reloadData];
     
-//    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    UIViewController * viewController = [storyBoard instantiateViewControllerWithIdentifier:@""];
-//    [self.navigationController pushViewController:viewController animated:YES];
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    EMAddUpdateVC * empAddUpdateVC = (EMAddUpdateVC *)[storyBoard instantiateViewControllerWithIdentifier:@"EMAddUpdateVC"];
+    [self.navigationController pushViewController:empAddUpdateVC animated:YES];
 }
 
 - (IBAction)backAction:(id)sender {
