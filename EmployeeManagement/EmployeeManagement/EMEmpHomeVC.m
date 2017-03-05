@@ -11,6 +11,7 @@
 #import "EMEmployee.h"
 #import "EMAddUpdateVC.h"
 #import "EMDetailsVC.h"
+#import "EMDataBaseManager.h"
 
 @interface EMEmpHomeVC () <UITableViewDelegate, UITableViewDataSource>
 
@@ -51,6 +52,9 @@
     [self.empList addObject:employee];
     [self.empTableView reloadData];
     
+    EMDataBaseManager * dbManager = [[EMDataBaseManager alloc] init];
+    [dbManager insertEntity:employee];
+    
 //    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 //    EMAddUpdateVC * empAddUpdateVC = (EMAddUpdateVC *)[storyBoard instantiateViewControllerWithIdentifier:@"EMAddUpdateVC"];
 //    [self.navigationController pushViewController:empAddUpdateVC animated:YES];
@@ -58,6 +62,8 @@
 
 - (IBAction)backAction:(id)sender {
     
+    EMDataBaseManager * dbManager = [[EMDataBaseManager alloc] init];
+    [dbManager fetchAllEntity];
 }
 
 //============================================================================================================================================
@@ -65,7 +71,7 @@
 //============================================================================================================================================
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return  self.empList.count;
+    return self.empList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

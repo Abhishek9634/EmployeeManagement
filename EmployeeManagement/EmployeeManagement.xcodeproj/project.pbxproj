@@ -23,6 +23,8 @@
 		46CB79C11E6BF49F00C12240 /* EMUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CB79C01E6BF49F00C12240 /* EMUtility.m */; };
 		46CB79C71E6BF9EF00C12240 /* EMAddUpdateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CB79C61E6BF9EF00C12240 /* EMAddUpdateVC.m */; };
 		46CB79CB1E6C0DE100C12240 /* EMDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CB79CA1E6C0DE100C12240 /* EMDetailsVC.m */; };
+		46CB79CF1E6C11C200C12240 /* EMDataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CB79CE1E6C11C200C12240 /* EMDataBaseManager.m */; };
+		46CB79D21E6C11F100C12240 /* EMDBHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CB79D11E6C11F100C12240 /* EMDBHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,10 @@
 		46CB79C61E6BF9EF00C12240 /* EMAddUpdateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMAddUpdateVC.m; sourceTree = "<group>"; };
 		46CB79C91E6C0DE100C12240 /* EMDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMDetailsVC.h; sourceTree = "<group>"; };
 		46CB79CA1E6C0DE100C12240 /* EMDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMDetailsVC.m; sourceTree = "<group>"; };
+		46CB79CD1E6C11C200C12240 /* EMDataBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMDataBaseManager.h; sourceTree = "<group>"; };
+		46CB79CE1E6C11C200C12240 /* EMDataBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMDataBaseManager.m; sourceTree = "<group>"; };
+		46CB79D01E6C11F100C12240 /* EMDBHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMDBHandler.h; sourceTree = "<group>"; };
+		46CB79D11E6C11F100C12240 /* EMDBHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMDBHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +201,10 @@
 			children = (
 				46CB79B31E6BEC0800C12240 /* Employee.h */,
 				46CB79B41E6BEC0800C12240 /* Employee.m */,
+				46CB79CD1E6C11C200C12240 /* EMDataBaseManager.h */,
+				46CB79CE1E6C11C200C12240 /* EMDataBaseManager.m */,
+				46CB79D01E6C11F100C12240 /* EMDBHandler.h */,
+				46CB79D11E6C11F100C12240 /* EMDBHandler.m */,
 			);
 			name = EmployeeDB;
 			sourceTree = "<group>";
@@ -351,6 +361,8 @@
 				46CB79B51E6BEC0800C12240 /* Employee.m in Sources */,
 				465CEE411E6BD07E007DFEE3 /* AppDelegate.m in Sources */,
 				465CEE3E1E6BD07E007DFEE3 /* main.m in Sources */,
+				46CB79CF1E6C11C200C12240 /* EMDataBaseManager.m in Sources */,
+				46CB79D21E6C11F100C12240 /* EMDBHandler.m in Sources */,
 				46CB79C71E6BF9EF00C12240 /* EMAddUpdateVC.m in Sources */,
 				46CB79B91E6BED6000C12240 /* EMEmpHomeVC.m in Sources */,
 				46CB79C11E6BF49F00C12240 /* EMUtility.m in Sources */,
