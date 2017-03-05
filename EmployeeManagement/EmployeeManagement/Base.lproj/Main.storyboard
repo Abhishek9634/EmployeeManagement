@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="lo3-QD-h9O">
+            <objects>
+                <viewController id="NgH-X6-LW6" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lZQ-Db-Nmt"/>
+                        <viewControllerLayoutGuide type="bottom" id="mXb-RG-h3F"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uVM-pV-PZn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="JiV-hk-5Wi">
+                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="NgH-X6-LW6" id="DQV-TX-ARN"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JUz-C9-Pxb">
+                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JiV-hk-5Wi" firstAttribute="top" secondItem="lZQ-Db-Nmt" secondAttribute="bottom" id="4J2-NA-ScB"/>
+                            <constraint firstItem="JiV-hk-5Wi" firstAttribute="trailing" secondItem="JUz-C9-Pxb" secondAttribute="trailing" id="KI5-MX-3q9"/>
+                            <constraint firstItem="JUz-C9-Pxb" firstAttribute="bottom" secondItem="mXb-RG-h3F" secondAttribute="top" id="L9R-xl-jI4"/>
+                            <constraint firstItem="JUz-C9-Pxb" firstAttribute="top" secondItem="JiV-hk-5Wi" secondAttribute="bottom" id="Tst-Lg-c6A"/>
+                            <constraint firstItem="JiV-hk-5Wi" firstAttribute="leading" secondItem="JUz-C9-Pxb" secondAttribute="leading" id="aKc-nI-yRi"/>
+                            <constraint firstAttribute="trailing" secondItem="JiV-hk-5Wi" secondAttribute="trailing" id="klP-FC-dt2"/>
+                            <constraint firstItem="JiV-hk-5Wi" firstAttribute="leading" secondItem="uVM-pV-PZn" secondAttribute="leading" id="olt-NZ-iVl"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="MMN-nC-aJs"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="NN7-QT-38e" id="IE2-QR-XTx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h7C-aN-115" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="C2K-aU-Bbv">
+                    <connections>
+                        <outlet property="delegate" destination="NgH-X6-LW6" id="buw-Fd-PZM"/>
+                        <outlet property="searchContentsController" destination="NgH-X6-LW6" id="5XT-dM-tZe"/>
+                        <outlet property="searchResultsDataSource" destination="NgH-X6-LW6" id="8C4-mO-EQS"/>
+                        <outlet property="searchResultsDelegate" destination="NgH-X6-LW6" id="NZe-A8-Of9"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="NN7-QT-38e">
+                    <connections>
+                        <outlet property="delegate" destination="NgH-X6-LW6" id="7dn-3o-eR9"/>
+                        <outlet property="searchBar" destination="JiV-hk-5Wi" id="f9n-ib-Uvf"/>
+                        <outlet property="searchContentsController" destination="NgH-X6-LW6" id="aJh-9j-9YX"/>
+                        <outlet property="searchResultsDataSource" destination="NgH-X6-LW6" id="GXC-aQ-yko"/>
+                        <outlet property="searchResultsDelegate" destination="NgH-X6-LW6" id="zsP-ed-E0q"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="1629.5999999999999" y="138.98050974512745"/>
+        </scene>
+        <!--Details-->
+        <scene sceneID="fM0-D0-ubx">
+            <objects>
+                <viewController title="Details" id="PGV-2t-Xdc" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Uvo-Ph-oSq"/>
+                        <viewControllerLayoutGuide type="bottom" id="EhG-se-x9o"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eYx-QL-x9g">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WJj-7N-azZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2430" y="139"/>
+        </scene>
+        <!--Edit -->
+        <scene sceneID="QWp-Dy-dbG">
+            <objects>
+                <viewController title="Edit " id="m9r-hL-ONz" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EwE-u4-zEF"/>
+                        <viewControllerLayoutGuide type="bottom" id="KyF-Rz-CgR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HNL-4s-tLl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Hd-eo-Oa6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3233" y="139"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="E2Q-70-dmh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GOR-1S-U9m" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Knm-bH-GyG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="NgH-X6-LW6" kind="relationship" relationship="rootViewController" id="T0Z-cx-5FP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gj8-i6-gVO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="688.79999999999995" y="138.98050974512745"/>
+        </scene>
+    </scenes>
+</document>
