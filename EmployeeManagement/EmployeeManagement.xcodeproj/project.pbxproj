@@ -22,6 +22,7 @@
 		46CB79BE1E6BF19000C12240 /* EMEmployee.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CB79BD1E6BF19000C12240 /* EMEmployee.m */; };
 		46CB79C11E6BF49F00C12240 /* EMUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CB79C01E6BF49F00C12240 /* EMUtility.m */; };
 		46CB79C71E6BF9EF00C12240 /* EMAddUpdateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CB79C61E6BF9EF00C12240 /* EMAddUpdateVC.m */; };
+		46CB79CB1E6C0DE100C12240 /* EMDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CB79CA1E6C0DE100C12240 /* EMDetailsVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,8 @@
 		46CB79C01E6BF49F00C12240 /* EMUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMUtility.m; sourceTree = "<group>"; };
 		46CB79C51E6BF9EF00C12240 /* EMAddUpdateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMAddUpdateVC.h; sourceTree = "<group>"; };
 		46CB79C61E6BF9EF00C12240 /* EMAddUpdateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMAddUpdateVC.m; sourceTree = "<group>"; };
+		46CB79C91E6C0DE100C12240 /* EMDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMDetailsVC.h; sourceTree = "<group>"; };
+		46CB79CA1E6C0DE100C12240 /* EMDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMDetailsVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +184,8 @@
 				46CB79B81E6BED6000C12240 /* EMEmpHomeVC.m */,
 				46CB79C51E6BF9EF00C12240 /* EMAddUpdateVC.h */,
 				46CB79C61E6BF9EF00C12240 /* EMAddUpdateVC.m */,
+				46CB79C91E6C0DE100C12240 /* EMDetailsVC.h */,
+				46CB79CA1E6C0DE100C12240 /* EMDetailsVC.m */,
 			);
 			name = EMViewControllers;
 			sourceTree = "<group>";
@@ -342,6 +347,7 @@
 				46CB79BE1E6BF19000C12240 /* EMEmployee.m in Sources */,
 				46CB79A41E6BE57700C12240 /* EMEmployeeCell.m in Sources */,
 				465CEE441E6BD07E007DFEE3 /* ViewController.m in Sources */,
+				46CB79CB1E6C0DE100C12240 /* EMDetailsVC.m in Sources */,
 				46CB79B51E6BEC0800C12240 /* Employee.m in Sources */,
 				465CEE411E6BD07E007DFEE3 /* AppDelegate.m in Sources */,
 				465CEE3E1E6BD07E007DFEE3 /* main.m in Sources */,
