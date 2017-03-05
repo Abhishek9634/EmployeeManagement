@@ -16,6 +16,8 @@
 		465CEE4F1E6BD07E007DFEE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 465CEE4D1E6BD07E007DFEE3 /* LaunchScreen.storyboard */; };
 		465CEE5A1E6BD07E007DFEE3 /* EmployeeManagementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 465CEE591E6BD07E007DFEE3 /* EmployeeManagementTests.m */; };
 		465CEE651E6BD07E007DFEE3 /* EmployeeManagementUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 465CEE641E6BD07E007DFEE3 /* EmployeeManagementUITests.m */; };
+		46CB79A41E6BE57700C12240 /* EMEmployeeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CB79A31E6BE57700C12240 /* EMEmployeeCell.m */; };
+		46CB79B51E6BEC0800C12240 /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CB79B41E6BEC0800C12240 /* Employee.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,10 @@
 		465CEE601E6BD07E007DFEE3 /* EmployeeManagementUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmployeeManagementUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		465CEE641E6BD07E007DFEE3 /* EmployeeManagementUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmployeeManagementUITests.m; sourceTree = "<group>"; };
 		465CEE661E6BD07E007DFEE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46CB79A21E6BE57700C12240 /* EMEmployeeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMEmployeeCell.h; sourceTree = "<group>"; };
+		46CB79A31E6BE57700C12240 /* EMEmployeeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMEmployeeCell.m; sourceTree = "<group>"; };
+		46CB79B31E6BEC0800C12240 /* Employee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee.h; sourceTree = "<group>"; };
+		46CB79B41E6BEC0800C12240 /* Employee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,13 +111,14 @@
 			children = (
 				465CEE3F1E6BD07E007DFEE3 /* AppDelegate.h */,
 				465CEE401E6BD07E007DFEE3 /* AppDelegate.m */,
-				465CEE421E6BD07E007DFEE3 /* ViewController.h */,
-				465CEE431E6BD07E007DFEE3 /* ViewController.m */,
 				465CEE451E6BD07E007DFEE3 /* Main.storyboard */,
 				465CEE4B1E6BD07E007DFEE3 /* Assets.xcassets */,
 				465CEE4D1E6BD07E007DFEE3 /* LaunchScreen.storyboard */,
 				465CEE501E6BD07E007DFEE3 /* Info.plist */,
 				465CEE481E6BD07E007DFEE3 /* EmployeeManagement.xcdatamodeld */,
+				46CB79B61E6BEC1A00C12240 /* EmployeeDB */,
+				46CB79A61E6BE5A800C12240 /* EMViewControllers */,
+				46CB79A51E6BE58000C12240 /* EMTableCells */,
 				465CEE3C1E6BD07E007DFEE3 /* Supporting Files */,
 			);
 			path = EmployeeManagement;
@@ -141,6 +148,33 @@
 				465CEE661E6BD07E007DFEE3 /* Info.plist */,
 			);
 			path = EmployeeManagementUITests;
+			sourceTree = "<group>";
+		};
+		46CB79A51E6BE58000C12240 /* EMTableCells */ = {
+			isa = PBXGroup;
+			children = (
+				46CB79A21E6BE57700C12240 /* EMEmployeeCell.h */,
+				46CB79A31E6BE57700C12240 /* EMEmployeeCell.m */,
+			);
+			name = EMTableCells;
+			sourceTree = "<group>";
+		};
+		46CB79A61E6BE5A800C12240 /* EMViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				465CEE421E6BD07E007DFEE3 /* ViewController.h */,
+				465CEE431E6BD07E007DFEE3 /* ViewController.m */,
+			);
+			name = EMViewControllers;
+			sourceTree = "<group>";
+		};
+		46CB79B61E6BEC1A00C12240 /* EmployeeDB */ = {
+			isa = PBXGroup;
+			children = (
+				46CB79B31E6BEC0800C12240 /* Employee.h */,
+				46CB79B41E6BEC0800C12240 /* Employee.m */,
+			);
+			name = EmployeeDB;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,7 +311,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				465CEE4A1E6BD07E007DFEE3 /* EmployeeManagement.xcdatamodeld in Sources */,
+				46CB79A41E6BE57700C12240 /* EMEmployeeCell.m in Sources */,
 				465CEE441E6BD07E007DFEE3 /* ViewController.m in Sources */,
+				46CB79B51E6BEC0800C12240 /* Employee.m in Sources */,
 				465CEE411E6BD07E007DFEE3 /* AppDelegate.m in Sources */,
 				465CEE3E1E6BD07E007DFEE3 /* main.m in Sources */,
 			);
@@ -513,6 +549,7 @@
 				465CEE6B1E6BD07E007DFEE3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		465CEE6C1E6BD07E007DFEE3 /* Build configuration list for PBXNativeTarget "EmployeeManagementTests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +558,7 @@
 				465CEE6E1E6BD07E007DFEE3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		465CEE6F1E6BD07E007DFEE3 /* Build configuration list for PBXNativeTarget "EmployeeManagementUITests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +567,7 @@
 				465CEE711E6BD07E007DFEE3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
