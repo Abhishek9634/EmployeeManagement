@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EMAddUpdateVC : UITableViewController
+@interface EMAddUpdateVC : UITableViewController 
 
 @end
