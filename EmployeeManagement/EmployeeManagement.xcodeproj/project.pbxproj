@@ -18,6 +18,9 @@
 		465CEE651E6BD07E007DFEE3 /* EmployeeManagementUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 465CEE641E6BD07E007DFEE3 /* EmployeeManagementUITests.m */; };
 		46CB79A41E6BE57700C12240 /* EMEmployeeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CB79A31E6BE57700C12240 /* EMEmployeeCell.m */; };
 		46CB79B51E6BEC0800C12240 /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CB79B41E6BEC0800C12240 /* Employee.m */; };
+		46CB79B91E6BED6000C12240 /* EMEmpHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CB79B81E6BED6000C12240 /* EMEmpHomeVC.m */; };
+		46CB79BE1E6BF19000C12240 /* EMEmployee.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CB79BD1E6BF19000C12240 /* EMEmployee.m */; };
+		46CB79C11E6BF49F00C12240 /* EMUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 46CB79C01E6BF49F00C12240 /* EMUtility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +62,12 @@
 		46CB79A31E6BE57700C12240 /* EMEmployeeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMEmployeeCell.m; sourceTree = "<group>"; };
 		46CB79B31E6BEC0800C12240 /* Employee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee.h; sourceTree = "<group>"; };
 		46CB79B41E6BEC0800C12240 /* Employee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee.m; sourceTree = "<group>"; };
+		46CB79B71E6BED6000C12240 /* EMEmpHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMEmpHomeVC.h; sourceTree = "<group>"; };
+		46CB79B81E6BED6000C12240 /* EMEmpHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMEmpHomeVC.m; sourceTree = "<group>"; };
+		46CB79BC1E6BF19000C12240 /* EMEmployee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMEmployee.h; sourceTree = "<group>"; };
+		46CB79BD1E6BF19000C12240 /* EMEmployee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMEmployee.m; sourceTree = "<group>"; };
+		46CB79BF1E6BF49F00C12240 /* EMUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMUtility.h; sourceTree = "<group>"; };
+		46CB79C01E6BF49F00C12240 /* EMUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMUtility.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +125,7 @@
 				465CEE4D1E6BD07E007DFEE3 /* LaunchScreen.storyboard */,
 				465CEE501E6BD07E007DFEE3 /* Info.plist */,
 				465CEE481E6BD07E007DFEE3 /* EmployeeManagement.xcdatamodeld */,
+				46CB79BB1E6BF16E00C12240 /* EMEmployeeClass */,
 				46CB79B61E6BEC1A00C12240 /* EmployeeDB */,
 				46CB79A61E6BE5A800C12240 /* EMViewControllers */,
 				46CB79A51E6BE58000C12240 /* EMTableCells */,
@@ -164,6 +174,8 @@
 			children = (
 				465CEE421E6BD07E007DFEE3 /* ViewController.h */,
 				465CEE431E6BD07E007DFEE3 /* ViewController.m */,
+				46CB79B71E6BED6000C12240 /* EMEmpHomeVC.h */,
+				46CB79B81E6BED6000C12240 /* EMEmpHomeVC.m */,
 			);
 			name = EMViewControllers;
 			sourceTree = "<group>";
@@ -175,6 +187,17 @@
 				46CB79B41E6BEC0800C12240 /* Employee.m */,
 			);
 			name = EmployeeDB;
+			sourceTree = "<group>";
+		};
+		46CB79BB1E6BF16E00C12240 /* EMEmployeeClass */ = {
+			isa = PBXGroup;
+			children = (
+				46CB79BC1E6BF19000C12240 /* EMEmployee.h */,
+				46CB79BD1E6BF19000C12240 /* EMEmployee.m */,
+				46CB79BF1E6BF49F00C12240 /* EMUtility.h */,
+				46CB79C01E6BF49F00C12240 /* EMUtility.m */,
+			);
+			name = EMEmployeeClass;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,11 +334,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				465CEE4A1E6BD07E007DFEE3 /* EmployeeManagement.xcdatamodeld in Sources */,
+				46CB79BE1E6BF19000C12240 /* EMEmployee.m in Sources */,
 				46CB79A41E6BE57700C12240 /* EMEmployeeCell.m in Sources */,
 				465CEE441E6BD07E007DFEE3 /* ViewController.m in Sources */,
 				46CB79B51E6BEC0800C12240 /* Employee.m in Sources */,
 				465CEE411E6BD07E007DFEE3 /* AppDelegate.m in Sources */,
 				465CEE3E1E6BD07E007DFEE3 /* main.m in Sources */,
+				46CB79B91E6BED6000C12240 /* EMEmpHomeVC.m in Sources */,
+				46CB79C11E6BF49F00C12240 /* EMUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

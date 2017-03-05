@@ -52,7 +52,7 @@
         <!--Employee Details-->
         <scene sceneID="lo3-QD-h9O">
             <objects>
-                <viewController id="NgH-X6-LW6" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EMEmpHomeVC" id="NgH-X6-LW6" customClass="EMEmpHomeVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lZQ-Db-Nmt"/>
                         <viewControllerLayoutGuide type="bottom" id="mXb-RG-h3F"/>
@@ -163,10 +163,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Employee Details" id="MMN-nC-aJs">
-                        <barButtonItem key="leftBarButtonItem" image="back_button" id="l5E-6x-mo8"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="S5i-uL-oam"/>
+                        <barButtonItem key="leftBarButtonItem" image="back_button" id="l5E-6x-mo8">
+                            <connections>
+                                <action selector="backAction:" destination="NgH-X6-LW6" id="Bjd-pC-516"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="S5i-uL-oam">
+                            <connections>
+                                <action selector="addEmployee:" destination="NgH-X6-LW6" id="SBM-Px-Zra"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="empSearchBar" destination="JiV-hk-5Wi" id="WbD-Wk-U4y"/>
+                        <outlet property="empTableView" destination="JUz-C9-Pxb" id="dcT-TZ-pRr"/>
                         <outlet property="searchDisplayController" destination="NN7-QT-38e" id="IE2-QR-XTx"/>
                     </connections>
                 </viewController>
