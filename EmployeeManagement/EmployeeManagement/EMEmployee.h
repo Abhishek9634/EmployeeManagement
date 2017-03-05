@@ -10,6 +10,7 @@
 
 @interface EMEmployee : NSObject
 
+@property (nonatomic, strong) NSString *empId;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSNumber *dob;
 @property (nonatomic, strong) NSString *gender;

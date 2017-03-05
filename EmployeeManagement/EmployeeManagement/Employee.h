@@ -10,6 +10,7 @@
 
 @interface Employee : NSManagedObject
 
+@property (nullable, nonatomic, copy) NSString *empId;
 @property (nullable, nonatomic, copy) NSString *name;
 @property (nullable, nonatomic, copy) NSNumber *dob;
 @property (nullable, nonatomic, copy) NSString *gender;

@@ -10,4 +10,6 @@
 
 @interface EMUtility : NSObject
 
++(NSNumber *)getCurrentTime;
+
 @end

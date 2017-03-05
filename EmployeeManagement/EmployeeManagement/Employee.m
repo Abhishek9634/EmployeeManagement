@@ -10,6 +10,7 @@
 
 @implementation Employee
 
+@dynamic empId;
 @dynamic name;
 @dynamic dob;
 @dynamic gender;

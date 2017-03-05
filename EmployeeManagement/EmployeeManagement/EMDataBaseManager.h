@@ -12,6 +12,7 @@
 @interface EMDataBaseManager : NSObject
 
 -(void)insertEntity:(EMEmployee *)employee;
+-(void)updateEntity:(EMEmployee *)employee;
 -(NSMutableArray *)fetchAllEntity;
 
 @end

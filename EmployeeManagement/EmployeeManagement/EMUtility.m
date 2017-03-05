@@ -10,4 +10,8 @@
 
 @implementation EMUtility
 
++(NSNumber *)getCurrentTime {
+    return [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970] * 1000];
+}
+
 @end

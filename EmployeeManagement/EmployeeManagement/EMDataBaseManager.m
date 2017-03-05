@@ -30,10 +30,46 @@
     dbEmployee.designation = employee.designation;
     dbEmployee.address = employee.address;
     dbEmployee.hobbies = employee.hobbies;
+    dbEmployee.empId = employee.empId;
     
     NSError *error = nil;
     [dbHandler.persistentContainer.viewContext save:&error];
     NSLog(@"INSERT ENTITY ERROR(IF_ANY) : %@", error.description);
+}
+
+-(void)updateEntity:(EMEmployee *)employee {
+
+    EMDBHandler * dbHandler = [EMDBHandler sharedManager];
+    
+    NSFetchRequest * request = [[NSFetchRequest alloc] initWithEntityName:@"Employee"];
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"empId == %@", employee.empId];
+    [request setPredicate:predicate];
+    
+    NSError *fetchError = nil;
+    NSArray *results = [dbHandler.persistentContainer.viewContext executeFetchRequest:request error:&fetchError];
+    NSLog(@"FETCHING FOR UPDATE ENTITY ERROR(IF_ANY) : %@ && COUNT : %lu", fetchError.description, results.count);
+    
+    if (results.count) {
+        
+        Employee *dbEmployee = [results objectAtIndex:0];
+     
+        dbEmployee.name = employee.name;
+        dbEmployee.dob = employee.dob;
+        dbEmployee.gender = employee.gender;
+        dbEmployee.imageLink = employee.imageLink;
+        dbEmployee.dateAdded = employee.dateAdded;
+        dbEmployee.designation = employee.designation;
+        dbEmployee.address = employee.address;
+        dbEmployee.hobbies = employee.hobbies;
+        dbEmployee.empId = employee.empId;
+        
+        NSError *error = nil;
+        [dbHandler.persistentContainer.viewContext save:&error];
+        NSLog(@"UDATING ENTITY ERROR(IF_ANY) : %@", error.description);
+    }
+    else {
+        NSLog(@"NO_DATA_FOUND");
+    }
 }
 
 -(NSMutableArray *)fetchAllEntity {
@@ -50,6 +86,7 @@
     for (Employee *dbEmployee in results) {
     
         EMEmployee *employee = [[EMEmployee alloc] init];
+        employee.empId = dbEmployee.empId;
         employee.name = dbEmployee.name;
         employee.dob = dbEmployee.dob;
         employee.gender = dbEmployee.gender;
@@ -58,6 +95,9 @@
         employee.designation = dbEmployee.designation;
         employee.address = dbEmployee.address;
         employee.hobbies = dbEmployee.hobbies;
+        
+        NSLog(@"EMP_NAME : %@", employee.name);
+        NSLog(@"EMP_ID : %@", employee.empId);
         
         [employeeList addObject:employee];
     }

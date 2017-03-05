@@ -24,6 +24,18 @@
     });
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+
+    [super viewWillAppear:animated];
+    
+//    self.empImage;
+//    self.name.text = self.employee.name;
+//    self.dob.text = [NSString stringWithFormat:@"%@", self.employee.dob];
+//    self.address.text = self.employee.address;
+//    self.gender.text = self.employee.gender;
+//    self.hobbies.text = self.employee.hobbies;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

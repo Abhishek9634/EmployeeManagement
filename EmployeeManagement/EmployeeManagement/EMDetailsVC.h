@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EMEmployee.h"
 
 @interface EMDetailsVC : UIViewController
 
@@ -17,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *gender;
 @property (weak, nonatomic) IBOutlet UILabel *hobbies;
 
+@property (strong, nonatomic) EMEmployee *employee;
 
 @end
