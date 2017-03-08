@@ -14,6 +14,6 @@
 -(void)insertEntity:(EMEmployee *)employee;
 -(void)updateEntity:(EMEmployee *)employee;
 -(void)deleteEntity:(NSString *)empId;
--(void)fetchAllEntityWithCompletion:(void(^)(NSMutableArray * array, NSMutableArray * empNameList))completion;
+-(void)fetchAllEntityWithCompletion:(void(^)(NSMutableArray * array))completion;
 
 @end

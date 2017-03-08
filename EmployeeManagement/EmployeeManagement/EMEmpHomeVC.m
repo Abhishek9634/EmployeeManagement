@@ -14,18 +14,14 @@
 #import "EMDataBaseManager.h"
 #import "EMUtility.h"
 
-@interface EMEmpHomeVC () <UITableViewDelegate, UITableViewDataSource>
+@interface EMEmpHomeVC () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 @property (strong, nonatomic) EMDataBaseManager * dbManager;
-@property (strong, nonatomic) NSMutableArray * empName;
+@property (strong, nonatomic) NSMutableArray * filteredArray;
 
 @end
 
 @implementation EMEmpHomeVC
-{
-    NSArray *searchResults;
-    NSArray *searchObjects;
-}
 
 //============================================================================================================================================
 #pragma mark : VIEW LIFE CYCLE
@@ -37,8 +33,9 @@
     
     self.empTableView.delegate = self;
     self.empTableView.dataSource = self;
+    self.empSearchBar.delegate = self;
     self.empList = [[NSMutableArray alloc] init];
-    self.empName = [[NSMutableArray alloc] init];
+    self.filteredArray = [[NSMutableArray alloc] init];
     self.dbManager = [[EMDataBaseManager alloc] init];
 }
 
@@ -52,14 +49,14 @@
     
     if (self.empList.count) {
         [self.empList removeAllObjects];
-        [self.empName removeAllObjects];
     }
     
-    [self.dbManager fetchAllEntityWithCompletion:^(NSMutableArray *array, NSMutableArray * empNameList) {
-        self.empList = array;
-        self.empName = empNameList;
+    [self.dbManager fetchAllEntityWithCompletion:^(NSMutableArray *array) {
+        self.empList = [NSMutableArray arrayWithArray:array];
+        self.filteredArray = [NSMutableArray arrayWithArray:array];
         [self.empTableView reloadData];
     }];
+   
 }
 
 //============================================================================================================================================
@@ -83,39 +80,23 @@
 //============================================================================================================================================
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return searchResults.count;
-    }
-    return self.empList.count;
+    return self.filteredArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     EMEmployeeCell * employeeCell = (EMEmployeeCell *)[tableView dequeueReusableCellWithIdentifier:@"EMEmployeeCell"];
     
-    EMEmployee *employee = [self.empList objectAtIndex:indexPath.row];
+    EMEmployee *employee = [self.filteredArray objectAtIndex:indexPath.row];
     
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        
-        if(employeeCell == nil)
-        {
-            employeeCell = [[EMEmployeeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"EMEmployeeCell"];
-        }
-        
-        employeeCell.textLabel.text = [searchResults objectAtIndex:indexPath.row];
-    }
-    else
-    {
-        employeeCell.empName.text = employee.name;
-        employeeCell.empDate.text = [NSString stringWithFormat:@"%@", employee.dateAdded];
-        employeeCell.gender.text = employee.gender;
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            employeeCell.empImage.layer.cornerRadius = employeeCell.empImage.frame.size.width/2;
-            employeeCell.empImage.layer.masksToBounds = YES;
-        });
-    }
+    employeeCell.empName.text = employee.name;
+    employeeCell.empDate.text = [NSString stringWithFormat:@"%@", employee.dateAdded];
+    employeeCell.gender.text = employee.gender;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        employeeCell.empImage.layer.cornerRadius = employeeCell.empImage.frame.size.width/2;
+        employeeCell.empImage.layer.masksToBounds = YES;
+    });
     
     return employeeCell;
 }
@@ -124,35 +105,45 @@
     
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     EMDetailsVC * empDetailsVC = (EMDetailsVC *)[storyBoard instantiateViewControllerWithIdentifier:@"EMDetailsVC"];
-    if (tableView == self.searchDisplayController.searchResultsTableView)
-    {
-//        empDetailsVC.employee = [searchResults objectAtIndex:indexPath.row];
-    }
-    else
-    {
-        empDetailsVC.employee = [self.empList objectAtIndex:indexPath.row];
-    }
-//    [self.navigationController pushViewController:empDetailsVC animated:YES];
+    empDetailsVC.employee = [self.empList objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:empDetailsVC animated:YES];
 }
 
 //============================================================================================================================================
-#pragma mark : UISearchDisplayController DELEGATES
+#pragma mark : UISearchDisplayBar DELEGATES
 //============================================================================================================================================
 
-- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
-{
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@", searchText];
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+
+    dispatch_async(dispatch_get_main_queue(), ^{
     
-    searchResults = [[self.empName filteredArrayUsingPredicate:resultPredicate] mutableCopy];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@", searchText];
+        [self.filteredArray removeAllObjects];
+        NSArray *searchArray = [self.empList filteredArrayUsingPredicate:predicate];
+        [self.filteredArray addObjectsFromArray:searchArray];
+    
+        if (!searchText.length) {
+            [self.filteredArray addObjectsFromArray:self.empList];
+        }
+        
+        [self.empTableView reloadData];
+    });
 }
 
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    [self filterContentForSearchText:searchString
-                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
-                                      objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+
+}
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
     
-    return YES;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    
+    [searchBar resignFirstResponder];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+   
 }
 
 @end
