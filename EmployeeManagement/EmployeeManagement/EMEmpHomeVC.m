@@ -54,9 +54,9 @@
     [self.dbManager fetchAllEntityWithCompletion:^(NSMutableArray *array) {
         self.empList = [NSMutableArray arrayWithArray:array];
         self.filteredArray = [NSMutableArray arrayWithArray:array];
+        self.empCountLabel.text = [NSString stringWithFormat:@"%02lu",self.empList.count];
         [self.empTableView reloadData];
     }];
-   
 }
 
 //============================================================================================================================================
@@ -73,6 +73,61 @@
 
 - (IBAction)backAction:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)sortAction:(id)sender {
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Sort By"
+                                                                             message:@""
+                                                                      preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction * nameSort = [UIAlertAction actionWithTitle:@"Name"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction * _Nonnull action) {
+                                                          
+          [self sortArray:@"name"];
+      }];
+    
+    UIAlertAction * dobSort = [UIAlertAction actionWithTitle:@"DOB"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * _Nonnull action) {
+                                                         
+          [self sortArray:@"dob"];
+      }];
+    
+    UIAlertAction * designationSort = [UIAlertAction actionWithTitle:@"Designation"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * _Nonnull action) {
+                                                                 
+         [self sortArray:@"designation"];
+      }];
+    
+    UIAlertAction * cancel = [UIAlertAction actionWithTitle:@"Cancel"
+                                                      style:UIAlertActionStyleCancel
+                                                    handler:nil];
+    
+    [alertController addAction:nameSort];
+    [alertController addAction:dobSort];
+    [alertController addAction:designationSort];
+    [alertController addAction:cancel];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)sortArray:(NSString *)sortParameter {
+
+    NSSortDescriptor *descriptor;
+    if ([sortParameter isEqualToString:@"name"]) {
+    
+        descriptor = [[NSSortDescriptor alloc] initWithKey:sortParameter
+                                                 ascending:YES
+                                                  selector:@selector(caseInsensitiveCompare:)];
+    }
+    else {
+        descriptor = [[NSSortDescriptor alloc] initWithKey:sortParameter ascending:NO];
+    }
+
+    self.filteredArray = [NSMutableArray arrayWithArray:[self.empList sortedArrayUsingDescriptors:@[descriptor]]];
+    [self.empTableView reloadData];
 }
 
 //============================================================================================================================================
