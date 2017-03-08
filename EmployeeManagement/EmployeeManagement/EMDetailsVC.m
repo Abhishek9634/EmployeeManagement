@@ -44,6 +44,9 @@
     self.address.text = self.employee.address;
     self.gender.text = self.employee.gender;
     self.hobbies.text = self.employee.hobbies;
+    
+    UIImage *image = self.employee.imageLink ? [EMUtility getImage:self.employee.imageLink] : [UIImage imageNamed:@"user_default.png"];
+    [self.empImage setImage:image];
 }
 
 - (void)didReceiveMemoryWarning {

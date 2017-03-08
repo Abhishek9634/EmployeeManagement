@@ -151,6 +151,9 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         employeeCell.empImage.layer.cornerRadius = employeeCell.empImage.frame.size.width/2;
         employeeCell.empImage.layer.masksToBounds = YES;
+        
+        UIImage *image = employee.imageLink ? [EMUtility getImage:employee.imageLink] : [UIImage imageNamed:@"user_default.png"];
+        [employeeCell.empImage setImage:image];
     });
     
     return employeeCell;

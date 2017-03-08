@@ -27,6 +27,6 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet UITextView *address;
 @property (weak, nonatomic) IBOutlet UITextField *gender;
 @property (weak, nonatomic) IBOutlet UITextField *hobbies;
-
+@property (nonatomic, strong) UIImagePickerController * imagePicker;
 
 @end

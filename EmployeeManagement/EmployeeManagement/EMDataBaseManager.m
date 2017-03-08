@@ -125,6 +125,7 @@
         
         NSLog(@"EMP_NAME : %@", employee.name);
         NSLog(@"EMP_ID : %@", employee.empId);
+        NSLog(@"EMP_IMG : %@", employee.imageLink);
         
         [employeeList addObject:employee];
     }

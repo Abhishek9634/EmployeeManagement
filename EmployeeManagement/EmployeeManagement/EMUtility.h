@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface EMUtility : NSObject
 
 +(NSNumber *)getCurrentTime;
++(NSString *)saveImage:(UIImage *)image;
++(UIImage *)getImage:(NSString *)filePath;
 
 @end

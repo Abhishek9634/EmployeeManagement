@@ -9,10 +9,12 @@
 #import "EMAddUpdateVC.h"
 #import "EMDataBaseManager.h"
 
-@interface EMAddUpdateVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface EMAddUpdateVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) UIBarButtonItem * submitButton;
 @property (strong, nonatomic) EMDataBaseManager * dbManager;
+@property (strong, nonatomic) UITapGestureRecognizer * tapGesture;
+@property (strong, nonatomic) NSString * imageLink;
 
 @end
 
@@ -27,6 +29,8 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    self.imageLink = nil;
+    
     self.submitButton = [[UIBarButtonItem alloc] initWithTitle:@"Submit"
                                                          style:UIBarButtonItemStylePlain
                                                         target:self
@@ -35,6 +39,12 @@
     [self.navigationItem setRightBarButtonItem:self.submitButton];
     self.dbManager = [[EMDataBaseManager alloc] init];
     
+    self.imagePicker = [[UIImagePickerController alloc] init];
+    self.imagePicker.delegate = self;
+    
+    self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeProfilePic)];
+    self.tapGesture.numberOfTapsRequired = 1;
+    [self.empImage addGestureRecognizer:self.tapGesture];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -62,10 +72,12 @@
         self.employee.dob = [NSNumber numberWithInt:[self.dob.text intValue]];
         self.employee.hobbies = self.hobbies.text;
         self.employee.designation = self.designation.text;
-//        self.employee.imageLink = @""                         // NEED TO CHECK
+        self.employee.imageLink = self.imageLink;                         // NEED TO CHECK
         self.employee.empId = [NSString stringWithFormat:@"EMP_%@", [EMUtility getCurrentTime]];
 
         [self.dbManager insertEntity:self.employee];
+        
+        [self.navigationController popViewControllerAnimated:YES];
     }
     else {
         
@@ -74,7 +86,7 @@
         self.employee.dob = [NSNumber numberWithInt:[self.dob.text intValue]];
         self.employee.hobbies = self.hobbies.text;
         self.employee.designation = self.designation.text;
-        //        self.employee.imageLink = @""                 // NEED TO CHECK
+        self.employee.imageLink = self.imageLink;                 // NEED TO CHECK
         [self.dbManager updateEntity:self.employee];
     }
 }
@@ -82,6 +94,60 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+//============================================================================================================================================
+#pragma mark : UIImagePickerController DELEGATES + METHODS
+//============================================================================================================================================
+
+- (void)changeProfilePic {
+
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@""
+                                                                             message:@""
+                                                                      preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction * camera = [UIAlertAction actionWithTitle:@"Camera"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction * _Nonnull action) {
+                                                          
+                                                          if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
+                                                              self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                                                              [self presentViewController:self.imagePicker animated:YES completion:nil];
+                                                          }
+                                                          else {
+                                                              NSLog(@"CAMERA ISN'T AVAILABLE");
+                                                          }
+                                                      }];
+    
+    UIAlertAction * photos = [UIAlertAction actionWithTitle:@"Photos"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * _Nonnull action) {
+                                                         
+                                                         self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                                                         [self presentViewController:self.imagePicker animated:YES completion:nil];
+                                                     }];
+    
+    
+    UIAlertAction * cancel = [UIAlertAction actionWithTitle:@"Cancel"
+                                                      style:UIAlertActionStyleCancel
+                                                    handler:nil];
+    
+    [alertController addAction:camera];
+    [alertController addAction:photos];
+    [alertController addAction:cancel];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+
+    UIImage * pickedImage = [info valueForKey:UIImagePickerControllerOriginalImage];
+    [self.empImage setImage:pickedImage];
+    self.imageLink = [EMUtility saveImage:pickedImage];
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*
