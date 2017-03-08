@@ -17,11 +17,15 @@
 @interface EMEmpHomeVC () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) EMDataBaseManager * dbManager;
+@property (strong, nonatomic) NSMutableArray * empName;
 
 @end
 
 @implementation EMEmpHomeVC
-
+{
+    NSArray *searchResults;
+    NSArray *searchObjects;
+}
 
 //============================================================================================================================================
 #pragma mark : VIEW LIFE CYCLE
@@ -34,6 +38,7 @@
     self.empTableView.delegate = self;
     self.empTableView.dataSource = self;
     self.empList = [[NSMutableArray alloc] init];
+    self.empName = [[NSMutableArray alloc] init];
     self.dbManager = [[EMDataBaseManager alloc] init];
 }
 
@@ -47,10 +52,12 @@
     
     if (self.empList.count) {
         [self.empList removeAllObjects];
+        [self.empName removeAllObjects];
     }
     
-    [self.dbManager fetchAllEntityWithCompletion:^(NSMutableArray *array) {
+    [self.dbManager fetchAllEntityWithCompletion:^(NSMutableArray *array, NSMutableArray * empNameList) {
         self.empList = array;
+        self.empName = empNameList;
         [self.empTableView reloadData];
     }];
 }
@@ -76,6 +83,10 @@
 //============================================================================================================================================
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return searchResults.count;
+    }
     return self.empList.count;
 }
 
@@ -85,24 +96,63 @@
     
     EMEmployee *employee = [self.empList objectAtIndex:indexPath.row];
     
-    employeeCell.empName.text = employee.name;
-    employeeCell.empDate.text = [NSString stringWithFormat:@"%@", employee.dateAdded];
-    employeeCell.gender.text = employee.gender;
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        employeeCell.empImage.layer.cornerRadius = employeeCell.empImage.frame.size.width/2;
-        employeeCell.empImage.layer.masksToBounds = YES;
-    });
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        
+        if(employeeCell == nil)
+        {
+            employeeCell = [[EMEmployeeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"EMEmployeeCell"];
+        }
+        
+        employeeCell.textLabel.text = [searchResults objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        employeeCell.empName.text = employee.name;
+        employeeCell.empDate.text = [NSString stringWithFormat:@"%@", employee.dateAdded];
+        employeeCell.gender.text = employee.gender;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            employeeCell.empImage.layer.cornerRadius = employeeCell.empImage.frame.size.width/2;
+            employeeCell.empImage.layer.masksToBounds = YES;
+        });
+    }
     
     return employeeCell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     EMDetailsVC * empDetailsVC = (EMDetailsVC *)[storyBoard instantiateViewControllerWithIdentifier:@"EMDetailsVC"];
-    empDetailsVC.employee = [self.empList objectAtIndex:indexPath.row];
-    [self.navigationController pushViewController:empDetailsVC animated:YES];
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+//        empDetailsVC.employee = [searchResults objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        empDetailsVC.employee = [self.empList objectAtIndex:indexPath.row];
+    }
+//    [self.navigationController pushViewController:empDetailsVC animated:YES];
+}
+
+//============================================================================================================================================
+#pragma mark : UISearchDisplayController DELEGATES
+//============================================================================================================================================
+
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@", searchText];
+    
+    searchResults = [[self.empName filteredArrayUsingPredicate:resultPredicate] mutableCopy];
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    
+    return YES;
 }
 
 @end

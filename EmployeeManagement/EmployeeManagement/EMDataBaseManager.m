@@ -98,9 +98,10 @@
     }
 }
 
--(void)fetchAllEntityWithCompletion:(void(^)(NSMutableArray * array))completion {
+-(void)fetchAllEntityWithCompletion:(void(^)(NSMutableArray * array, NSMutableArray * empNameList))completion {
     
     NSMutableArray * employeeList = [[NSMutableArray alloc] init];
+    NSMutableArray * empNameList = [[NSMutableArray alloc] init];
     EMDBHandler * dbHandler = [EMDBHandler sharedManager];
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Employee"];
@@ -125,10 +126,11 @@
         NSLog(@"EMP_NAME : %@", employee.name);
         NSLog(@"EMP_ID : %@", employee.empId);
         
+        [empNameList addObject:employee.name];
         [employeeList addObject:employee];
     }
 
-    completion (employeeList);
+    completion (employeeList, empNameList);
 }
 
 @end
