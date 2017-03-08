@@ -107,6 +107,7 @@
     EMDetailsVC * empDetailsVC = (EMDetailsVC *)[storyBoard instantiateViewControllerWithIdentifier:@"EMDetailsVC"];
     empDetailsVC.employee = [self.empList objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:empDetailsVC animated:YES];
+    [self.empSearchBar resignFirstResponder];
 }
 
 //============================================================================================================================================
@@ -124,6 +125,7 @@
     
         if (!searchText.length) {
             [self.filteredArray addObjectsFromArray:self.empList];
+            [searchBar resignFirstResponder];
         }
         
         [self.empTableView reloadData];
@@ -133,17 +135,17 @@
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
 
 }
+
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-    
+    NSLog(@"DID_END");
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    
     [searchBar resignFirstResponder];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-   
+    [searchBar resignFirstResponder];
 }
 
 @end
