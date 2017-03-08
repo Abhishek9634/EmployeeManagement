@@ -77,7 +77,7 @@
 
 - (IBAction)sortAction:(id)sender {
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Sort By"
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@""
                                                                              message:@""
                                                                       preferredStyle:UIAlertControllerStyleActionSheet];
     
