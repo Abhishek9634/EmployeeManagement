@@ -9,7 +9,9 @@
 #import "EMAddUpdateVC.h"
 #import "EMDataBaseManager.h"
 
-@interface EMAddUpdateVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface EMAddUpdateVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate,
+                            UIImagePickerControllerDelegate, UINavigationControllerDelegate,
+                            UITextViewDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) UIBarButtonItem * submitButton;
 @property (strong, nonatomic) EMDataBaseManager * dbManager;
@@ -30,6 +32,11 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.imageLink = nil;
+    
+    self.name.delegate = self;
+    self.designation.delegate = self;
+    self.address.delegate = self;
+    self.name.delegate = self;
     
     self.submitButton = [[UIBarButtonItem alloc] initWithTitle:@"Submit"
                                                          style:UIBarButtonItemStylePlain
@@ -105,6 +112,26 @@
 }
 
 //============================================================================================================================================
+#pragma mark : UITEXTVIEW & UITEXTFIELD DELEGATES
+//============================================================================================================================================
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+
+    if([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    
+    return YES;
+}
+
+//============================================================================================================================================
 #pragma mark : UIImagePickerController DELEGATES + METHODS
 //============================================================================================================================================
 
@@ -143,6 +170,7 @@
     [alertController addAction:camera];
     [alertController addAction:photos];
     [alertController addAction:cancel];
+    
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
