@@ -11,12 +11,14 @@
 
 @interface EMAddUpdateVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate,
                             UIImagePickerControllerDelegate, UINavigationControllerDelegate,
-                            UITextViewDelegate, UITextFieldDelegate>
+                            UITextViewDelegate, UITextFieldDelegate, UIPickerViewDataSource,
+                            UIPickerViewDelegate>
 
 @property (strong, nonatomic) UIBarButtonItem * submitButton;
 @property (strong, nonatomic) EMDataBaseManager * dbManager;
 @property (strong, nonatomic) UITapGestureRecognizer * tapGesture;
 @property (strong, nonatomic) NSString * imageLink;
+@property (strong, nonatomic) NSArray * pickerData;
 
 @end
 
@@ -37,6 +39,11 @@
     self.designation.delegate = self;
     self.address.delegate = self;
     self.name.delegate = self;
+    
+    self.genderPicker.delegate = self;
+    self.genderPicker.dataSource = self;
+    
+    self.pickerData = @[@"Male", @"Female"];
     
     self.submitButton = [[UIBarButtonItem alloc] initWithTitle:@"Submit"
                                                          style:UIBarButtonItemStylePlain
@@ -61,8 +68,7 @@
     if ([self.launchType isEqualToNumber:[NSNumber numberWithInt:UPDATE]]) {
         
         self.name.text = self.employee.name;
-        self.gender.text = self.employee.gender;
-//        self.dob.text = [self.employee.dob stringValue];
+        self.gender.text = [self.pickerData objectAtIndex:[self.genderPicker selectedRowInComponent:0]];
         [self.dobPicker setDate:[EMUtility getDate:self.employee.dob]];
         self.hobbies.text = self.employee.hobbies;
         self.designation.text = self.employee.designation;
@@ -76,13 +82,13 @@
     
         self.employee = [[EMEmployee alloc] init];
         self.employee.name = self.name.text;
-        self.employee.gender = self.gender.text;
-//        self.employee.dob = [NSNumber numberWithInt:[self.dob.text intValue]];
+        self.employee.gender = [self.pickerData objectAtIndex:[self.genderPicker selectedRowInComponent:0]];
         self.employee.dob = [EMUtility getLongMillis:self.dobPicker.date];
         self.employee.hobbies = self.hobbies.text;
         self.employee.designation = self.designation.text;
         self.employee.imageLink = self.imageLink;                         // NEED TO CHECK
         self.employee.empId = [NSString stringWithFormat:@"EMP_%@", [EMUtility getCurrentTime]];
+        self.employee.dateAdded = [EMUtility getCurrentTime];
 
         [self.dbManager insertEntity:self.employee];
         
@@ -91,12 +97,12 @@
     else {
         
         self.employee.name = self.name.text;
-        self.employee.gender = self.gender.text;
-//        self.employee.dob = [NSNumber numberWithInt:[self.dob.text intValue]];
+        self.employee.gender = [self.pickerData objectAtIndex:[self.genderPicker selectedRowInComponent:0]];
         self.employee.dob = [EMUtility getLongMillis:self.dobPicker.date];
         self.employee.hobbies = self.hobbies.text;
         self.employee.designation = self.designation.text;
         self.employee.imageLink = self.imageLink;                 // NEED TO CHECK
+        self.employee.dateAdded = self.employee.dateAdded;
         [self.dbManager updateEntity:self.employee];
     
         NSArray * viewControllers = [self.navigationController viewControllers];
@@ -187,6 +193,21 @@
     [self.empImage setImage:pickedImage];
     self.imageLink = [EMUtility saveImage:pickedImage];
     [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+// The number of rows of data
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return self.pickerData.count;
+}
+// The data to return for the row and component (column) that's being passed in
+- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return self.pickerData[row];
 }
 
 /*

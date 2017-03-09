@@ -146,6 +146,7 @@
     
     employeeCell.empName.text = employee.name;
     employeeCell.empDate.text = [NSString stringWithFormat:@"%@", employee.dateAdded];
+    employeeCell.empDate.text = [EMUtility getDateOfJoin:employee.dateAdded];
     employeeCell.gender.text = employee.gender;
     employeeCell.empDOB.text = [EMUtility getFormattedDOB:[EMUtility getDate:employee.dob]];
     

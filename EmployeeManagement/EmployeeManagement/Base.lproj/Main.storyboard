@@ -538,32 +538,39 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="88" id="bAd-W3-oZo">
-                                        <rect key="frame" x="0.0" y="382" width="375" height="88"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="98" id="bAd-W3-oZo">
+                                        <rect key="frame" x="0.0" y="382" width="375" height="98"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bAd-W3-oZo" id="pjw-f1-Ki0">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="97"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pv9-6y-Wu8">
-                                                    <rect key="frame" x="8" y="49" width="359" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1l-cb-52o">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1l-cb-52o">
                                                     <rect key="frame" x="8" y="8" width="359" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="qLr-ac-Qnn"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ep-1u-sg9">
+                                                    <rect key="frame" x="8" y="37" width="359" height="60"/>
+                                                </pickerView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="W1l-cb-52o" firstAttribute="leading" secondItem="0ep-1u-sg9" secondAttribute="leading" id="58k-gK-iUq"/>
+                                                <constraint firstItem="W1l-cb-52o" firstAttribute="leading" secondItem="pjw-f1-Ki0" secondAttribute="leadingMargin" id="7ou-vC-qlx"/>
+                                                <constraint firstAttribute="bottom" secondItem="0ep-1u-sg9" secondAttribute="bottom" id="CsV-Bt-7Ga"/>
+                                                <constraint firstItem="W1l-cb-52o" firstAttribute="top" secondItem="pjw-f1-Ki0" secondAttribute="topMargin" id="JDd-e5-Ctk"/>
+                                                <constraint firstItem="W1l-cb-52o" firstAttribute="trailing" secondItem="pjw-f1-Ki0" secondAttribute="trailingMargin" id="Nys-c0-n5v"/>
+                                                <constraint firstItem="0ep-1u-sg9" firstAttribute="top" secondItem="W1l-cb-52o" secondAttribute="bottom" constant="8" symbolic="YES" id="b4Z-kx-da2"/>
+                                                <constraint firstItem="W1l-cb-52o" firstAttribute="trailing" secondItem="0ep-1u-sg9" secondAttribute="trailing" id="k9t-bf-Hhk"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="88" id="9Eq-FF-53P">
-                                        <rect key="frame" x="0.0" y="470" width="375" height="88"/>
+                                        <rect key="frame" x="0.0" y="480" width="375" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Eq-FF-53P" id="iXw-Wu-idk">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
@@ -599,7 +606,7 @@
                         <outlet property="designation" destination="jem-dn-rn2" id="aNh-YP-i6w"/>
                         <outlet property="dobPicker" destination="YFp-YT-2gg" id="unu-UF-pxJ"/>
                         <outlet property="empImage" destination="X2T-Cf-rkd" id="nK6-lu-zy0"/>
-                        <outlet property="gender" destination="Pv9-6y-Wu8" id="eUR-lJ-gC1"/>
+                        <outlet property="genderPicker" destination="0ep-1u-sg9" id="oov-hi-8ga"/>
                         <outlet property="hobbies" destination="xL6-3T-LcN" id="EUd-kS-rpG"/>
                         <outlet property="name" destination="neP-Xg-YGI" id="Jpc-zx-aFQ"/>
                     </connections>

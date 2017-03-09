@@ -17,5 +17,6 @@
 +(NSString *)getFormattedDOB:(NSDate *)date;
 +(NSNumber *)getLongMillis:(NSDate *)date;
 +(NSDate *)getDate:(NSNumber *)longMillis;
++(NSString *)getDateOfJoin:(NSNumber *)longMillis;
 
 @end

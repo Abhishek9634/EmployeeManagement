@@ -53,4 +53,28 @@
     return [NSDate dateWithTimeIntervalSince1970:(longMillis.doubleValue / 1000.0)];
 }
 
++(NSString *)getDateOfJoin:(NSNumber *)longMillis {
+    
+    NSDate *dateOfJoin = [EMUtility getDate:longMillis];
+    NSDate * today = [NSDate date];
+    NSDate * yesterday = [today dateByAddingTimeInterval:-86400];
+    
+    NSString *todayDate = [EMUtility getFormattedDOB:today];
+    NSString *yesterdayDate = [EMUtility getFormattedDOB:yesterday];
+    NSString *paramDate = [EMUtility getFormattedDOB:dateOfJoin];
+    
+    if ([paramDate isEqualToString:todayDate])
+    {
+        return @"Today";
+    }
+    else if ([paramDate isEqualToString:yesterdayDate])
+    {
+        return @"Yesterday";
+    }
+    else
+    {
+        return paramDate;
+    }
+}
+
 @end
