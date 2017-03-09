@@ -88,6 +88,14 @@
         self.employee.designation = self.designation.text;
         self.employee.imageLink = self.imageLink;                 // NEED TO CHECK
         [self.dbManager updateEntity:self.employee];
+    
+        NSArray * viewControllers = [self.navigationController viewControllers];
+        for (UIViewController * viewObj in viewControllers) {
+        
+            if ([viewObj isKindOfClass:NSClassFromString(@"EMEmpHomeVC")]) {
+                [self.navigationController popToViewController:viewObj animated:YES];
+            }
+        }
     }
 }
 

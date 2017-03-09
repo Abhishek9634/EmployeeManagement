@@ -77,9 +77,9 @@
 
 - (IBAction)sortAction:(id)sender {
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@""
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Sort Types"
                                                                              message:@""
-                                                                      preferredStyle:UIAlertControllerStyleActionSheet];
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction * nameSort = [UIAlertAction actionWithTitle:@"Name"
                                                         style:UIAlertActionStyleDefault
