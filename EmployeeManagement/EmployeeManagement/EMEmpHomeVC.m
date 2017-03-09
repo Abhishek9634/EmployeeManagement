@@ -54,7 +54,7 @@
     [self.dbManager fetchAllEntityWithCompletion:^(NSMutableArray *array) {
         self.empList = [NSMutableArray arrayWithArray:array];
         self.filteredArray = [NSMutableArray arrayWithArray:array];
-        self.empCountLabel.text = [NSString stringWithFormat:@"%02lu",self.empList.count];
+        self.empCountLabel.text = [NSString stringWithFormat:@"%02lu",self.filteredArray.count];
         [self.empTableView reloadData];
     }];
 }
@@ -168,6 +168,22 @@
     empDetailsVC.employee = [self.empList objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:empDetailsVC animated:YES];
     [self.empSearchBar resignFirstResponder];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        EMEmployee *employee = [self.filteredArray objectAtIndex:indexPath.row];
+        [self.dbManager deleteEntity:employee.empId];
+        [self.filteredArray removeObject:employee];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        self.empCountLabel.text = [NSString stringWithFormat:@"%02lu",self.filteredArray.count];
+    }
+    else
+    {
+        NSLog(@"Unhandled editing style! %ld", (long)editingStyle);
+    }
 }
 
 //============================================================================================================================================
