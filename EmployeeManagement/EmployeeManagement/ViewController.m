@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "EMUtility.h"
 
 @interface ViewController ()
 
