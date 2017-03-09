@@ -14,5 +14,8 @@
 +(NSNumber *)getCurrentTime;
 +(NSString *)saveImage:(UIImage *)image;
 +(UIImage *)getImage:(NSString *)filePath;
++(NSString *)getFormattedDOB:(NSDate *)date;
++(NSNumber *)getLongMillis:(NSDate *)date;
++(NSDate *)getDate:(NSNumber *)longMillis;
 
 @end

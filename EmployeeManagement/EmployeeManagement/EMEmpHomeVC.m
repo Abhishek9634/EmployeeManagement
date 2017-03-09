@@ -147,6 +147,7 @@
     employeeCell.empName.text = employee.name;
     employeeCell.empDate.text = [NSString stringWithFormat:@"%@", employee.dateAdded];
     employeeCell.gender.text = employee.gender;
+    employeeCell.empDOB.text = [EMUtility getFormattedDOB:[EMUtility getDate:employee.dob]];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         employeeCell.empImage.layer.cornerRadius = employeeCell.empImage.frame.size.width/2;

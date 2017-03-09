@@ -33,4 +33,24 @@
     return image;
 }
 
++(NSString *)getFormattedDOB:(NSDate *)date {
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    dateFormat.dateStyle = NSDateFormatterMediumStyle;
+    [dateFormat setDateFormat:@"dd MMM yyyy"];
+    NSString *dateString = [NSString stringWithFormat:@"%@",[dateFormat stringFromDate:date]];
+    
+    return dateString;
+}
+
++(NSNumber *)getLongMillis:(NSDate *)date {
+    
+//    return [NSNumber numberWithDouble:([date timeIntervalSinceReferenceDate] * 1000)];
+    return [NSNumber numberWithDouble:([date timeIntervalSince1970] * 1000)];
+}
+
++(NSDate *)getDate:(NSNumber *)longMillis {
+    return [NSDate dateWithTimeIntervalSince1970:(longMillis.doubleValue / 1000.0)];
+}
+
 @end

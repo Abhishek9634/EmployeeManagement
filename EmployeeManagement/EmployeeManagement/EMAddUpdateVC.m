@@ -62,7 +62,8 @@
         
         self.name.text = self.employee.name;
         self.gender.text = self.employee.gender;
-        self.dob.text = [self.employee.dob stringValue];
+//        self.dob.text = [self.employee.dob stringValue];
+        [self.dobPicker setDate:[EMUtility getDate:self.employee.dob]];
         self.hobbies.text = self.employee.hobbies;
         self.designation.text = self.employee.designation;
     //        self.empImage.image =  NEED TO CHECK //self.employee.imageLink;
@@ -76,7 +77,8 @@
         self.employee = [[EMEmployee alloc] init];
         self.employee.name = self.name.text;
         self.employee.gender = self.gender.text;
-        self.employee.dob = [NSNumber numberWithInt:[self.dob.text intValue]];
+//        self.employee.dob = [NSNumber numberWithInt:[self.dob.text intValue]];
+        self.employee.dob = [EMUtility getLongMillis:self.dobPicker.date];
         self.employee.hobbies = self.hobbies.text;
         self.employee.designation = self.designation.text;
         self.employee.imageLink = self.imageLink;                         // NEED TO CHECK
@@ -90,7 +92,8 @@
         
         self.employee.name = self.name.text;
         self.employee.gender = self.gender.text;
-        self.employee.dob = [NSNumber numberWithInt:[self.dob.text intValue]];
+//        self.employee.dob = [NSNumber numberWithInt:[self.dob.text intValue]];
+        self.employee.dob = [EMUtility getLongMillis:self.dobPicker.date];
         self.employee.hobbies = self.hobbies.text;
         self.employee.designation = self.designation.text;
         self.employee.imageLink = self.imageLink;                 // NEED TO CHECK
@@ -185,6 +188,12 @@
     self.imageLink = [EMUtility saveImage:pickedImage];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
+
+/*
+
+ // [yourDatePicker setDate:[NSDate date]];
+ 
+*/
 
 /*
 
