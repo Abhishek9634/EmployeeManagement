@@ -23,6 +23,9 @@
 @end
 
 @implementation EMAddUpdateVC
+{
+    BOOL refreshFlag;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -50,6 +53,8 @@
                                                         target:self
                                                         action:@selector(submitAction)];
     
+    refreshFlag = YES;
+    
     [self.navigationItem setRightBarButtonItem:self.submitButton];
     self.dbManager = [[EMDataBaseManager alloc] init];
     
@@ -70,13 +75,16 @@
 
     [super viewWillAppear:animated];
     
-    if ([self.launchType isEqualToNumber:[NSNumber numberWithInt:UPDATE]]) {
+    if ([self.launchType isEqualToNumber:[NSNumber numberWithInt:UPDATE]] && refreshFlag) {
         
         self.name.text = self.employee.name;
         self.gender.text = [self.pickerData objectAtIndex:[self.genderPicker selectedRowInComponent:0]];
         [self.dobPicker setDate:[EMUtility getDate:self.employee.dob]];
         self.hobbies.text = self.employee.hobbies;
         self.designation.text = self.employee.designation;
+        
+        UIImage *currentImage = self.employee.imageLink ? [EMUtility getImage:self.employee.imageLink] : [UIImage imageNamed:@"user_default.png"];
+        [self.empImage setImage:currentImage];
     }
 }
 
@@ -150,8 +158,8 @@
 
 - (void)changeProfilePic {
 
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@""
-                                                                             message:@""
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
+                                                                             message:nil
                                                                       preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction * camera = [UIAlertAction actionWithTitle:@"Camera"
@@ -159,6 +167,7 @@
                                                       handler:^(UIAlertAction * _Nonnull action) {
                                                           
                                                           if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
+                                                              refreshFlag = NO;
                                                               self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
                                                               [self presentViewController:self.imagePicker animated:YES completion:nil];
                                                           }
@@ -170,7 +179,7 @@
     UIAlertAction * photos = [UIAlertAction actionWithTitle:@"Photos"
                                                        style:UIAlertActionStyleDefault
                                                      handler:^(UIAlertAction * _Nonnull action) {
-                                                         
+                                                         refreshFlag = NO;
                                                          self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                                                          [self presentViewController:self.imagePicker animated:YES completion:nil];
                                                      }];
