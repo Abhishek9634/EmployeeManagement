@@ -63,7 +63,6 @@
 }
 
 - (void)setUpNavigation {
-
  
     [self.navigationController.navigationBar setTitleTextAttributes: @{
                                                                        NSForegroundColorAttributeName: [UIColor whiteColor],
@@ -72,9 +71,7 @@
     
     [self.navigationController.navigationBar setBarTintColor: [UIColor blueColor]];
     [self.navigationController.navigationBar setTintColor: [UIColor whiteColor]];
-    
 }
-
 
 //============================================================================================================================================
 #pragma mark : NAVIGATION BAR BUTTON ACTIONS
@@ -170,10 +167,10 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         employeeCell.empImage.layer.cornerRadius = employeeCell.empImage.frame.size.width/2;
         employeeCell.empImage.layer.masksToBounds = YES;
-        
-        UIImage *image = employee.imageLink ? [EMUtility getImage:employee.imageLink] : [UIImage imageNamed:@"user_default.png"];
-        [employeeCell.empImage setImage:image];
     });
+    
+    UIImage *image = employee.imageLink ? [EMUtility getImage:employee.imageLink] : [UIImage imageNamed:@"user_default.png"];
+    [employeeCell.empImage setImage:image];
     
     return employeeCell;
 }
