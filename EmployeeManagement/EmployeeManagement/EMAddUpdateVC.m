@@ -59,6 +59,11 @@
     self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeProfilePic)];
     self.tapGesture.numberOfTapsRequired = 1;
     [self.empImage addGestureRecognizer:self.tapGesture];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.empImage.layer.cornerRadius = self.empImage.frame.size.width/2;
+        self.empImage.layer.masksToBounds = YES;
+    });
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -72,7 +77,6 @@
         [self.dobPicker setDate:[EMUtility getDate:self.employee.dob]];
         self.hobbies.text = self.employee.hobbies;
         self.designation.text = self.employee.designation;
-    //        self.empImage.image =  NEED TO CHECK //self.employee.imageLink;
     }
 }
 
@@ -213,12 +217,6 @@
 {
     return self.pickerData[row];
 }
-
-/*
-
- // [yourDatePicker setDate:[NSDate date]];
- 
-*/
 
 /*
 

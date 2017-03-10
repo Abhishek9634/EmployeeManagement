@@ -492,6 +492,12 @@
                                                     <date key="date" timeIntervalSinceReferenceDate="510779827.970366">
                                                         <!--2017-03-09 19:17:07 +0000-->
                                                     </date>
+                                                    <date key="minimumDate" timeIntervalSinceReferenceDate="-662794200">
+                                                        <!--1979-12-31 18:30:00 +0000-->
+                                                    </date>
+                                                    <date key="maximumDate" timeIntervalSinceReferenceDate="-31642200">
+                                                        <!--1999-12-31 18:30:00 +0000-->
+                                                    </date>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>

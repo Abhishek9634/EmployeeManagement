@@ -40,7 +40,6 @@
     
 //    self.empImage.image = nil;
     self.name.text = self.employee.name;
-//    self.dob.text = [NSString stringWithFormat:@"%@", self.employee.dob];
     self.dob.text = [EMUtility getFormattedDOB:[EMUtility getDate:self.employee.dob]];
     self.address.text = self.employee.address;
     self.gender.text = self.employee.gender;
