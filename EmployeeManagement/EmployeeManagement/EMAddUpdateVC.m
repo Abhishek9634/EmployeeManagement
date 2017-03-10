@@ -98,7 +98,7 @@
         self.employee.dob = [EMUtility getLongMillis:self.dobPicker.date];
         self.employee.hobbies = self.hobbies.text;
         self.employee.designation = self.designation.text;
-        self.employee.imageLink = self.imageLink;                         // NEED TO CHECK
+        self.employee.imageLink = self.imageLink;
         self.employee.empId = [NSString stringWithFormat:@"EMP_%@", [EMUtility getCurrentTime]];
         self.employee.dateAdded = [EMUtility getCurrentTime];
 
@@ -113,7 +113,7 @@
         self.employee.dob = [EMUtility getLongMillis:self.dobPicker.date];
         self.employee.hobbies = self.hobbies.text;
         self.employee.designation = self.designation.text;
-        self.employee.imageLink = self.imageLink;                 // NEED TO CHECK
+        self.employee.imageLink = self.imageLink ? self.imageLink : self.employee.imageLink;
         self.employee.dateAdded = self.employee.dateAdded;
         [self.dbManager updateEntity:self.employee];
     

@@ -38,7 +38,6 @@
 
     [super viewWillAppear:animated];
     
-//    self.empImage.image = nil;
     self.name.text = self.employee.name;
     self.dob.text = [EMUtility getFormattedDOB:[EMUtility getDate:self.employee.dob]];
     self.address.text = self.employee.address;

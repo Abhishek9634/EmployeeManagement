@@ -18,6 +18,7 @@
 
 @property (strong, nonatomic) EMDataBaseManager * dbManager;
 @property (strong, nonatomic) NSMutableArray * filteredArray;
+- (void)setUpNavigation;
 
 @end
 
@@ -57,7 +58,23 @@
         self.empCountLabel.text = [NSString stringWithFormat:@"%02lu",self.filteredArray.count];
         [self.empTableView reloadData];
     }];
+    
+    [self setUpNavigation];
 }
+
+- (void)setUpNavigation {
+
+ 
+    [self.navigationController.navigationBar setTitleTextAttributes: @{
+                                                                       NSForegroundColorAttributeName: [UIColor whiteColor],
+                                                                       NSFontAttributeName:[UIFont fontWithName:@"Helvetica" size:18]
+                                                                       }];
+    
+    [self.navigationController.navigationBar setBarTintColor: [UIColor blueColor]];
+    [self.navigationController.navigationBar setTintColor: [UIColor whiteColor]];
+    
+}
+
 
 //============================================================================================================================================
 #pragma mark : NAVIGATION BAR BUTTON ACTIONS

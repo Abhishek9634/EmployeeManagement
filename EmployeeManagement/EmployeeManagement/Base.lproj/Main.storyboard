@@ -54,7 +54,7 @@
             </objects>
             <point key="canvasLocation" x="-226.40000000000001" y="138.98050974512745"/>
         </scene>
-        <!--Employee Details-->
+        <!--Employees-->
         <scene sceneID="lo3-QD-h9O">
             <objects>
                 <viewController storyboardIdentifier="EMEmpHomeVC" id="NgH-X6-LW6" customClass="EMEmpHomeVC" sceneMemberID="viewController">
@@ -208,7 +208,7 @@
                             <constraint firstItem="JUz-C9-Pxb" firstAttribute="bottom" secondItem="mXb-RG-h3F" secondAttribute="top" id="xrp-vh-9be"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Employee Details" id="MMN-nC-aJs">
+                    <navigationItem key="navigationItem" title="Employees" id="MMN-nC-aJs">
                         <barButtonItem key="leftBarButtonItem" image="back_button" id="l5E-6x-mo8">
                             <connections>
                                 <action selector="backAction:" destination="NgH-X6-LW6" id="Bjd-pC-516"/>
