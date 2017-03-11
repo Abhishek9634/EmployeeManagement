@@ -487,7 +487,7 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="YFp-YT-2gg">
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="YFp-YT-2gg">
                                                     <rect key="frame" x="8" y="49" width="359" height="48"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="510779827.970366">
                                                         <!--2017-03-09 19:17:07 +0000-->
